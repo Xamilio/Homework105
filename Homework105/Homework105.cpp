@@ -1,41 +1,43 @@
-﻿#include <iostream>
+#include <iostream>
 using namespace std;
 
-int main() 
-{
-    setlocale(LC_ALL, "ru");
-    const int size = 10;
-    int array1[size];
-    int array2[size];
-    cout << "Введіть 10 двозначних чисел:" << endl;
-    for (int i = 0; i < size; i++) 
-    {
-        cin >> array1[i];
-    }
-    for (int i = 0; i < size; i++) 
-    {
-        int tens = array1[i] / 10;
-        int units = array1[i] % 10;
-        array2[i] = tens + units;
-    }
-    for (int gap = size / 2; gap > 0; gap /= 2) 
-    {
-        for (int i = gap; i < size; i++)
-        {
-            int temp = array2[i];
-            int j;
-            for (j = i; j >= gap && array2[j - gap] > temp; j -= gap) 
-            {
-                array2[j] = array2[j - gap];
-            }
-            array2[j] = temp;
-        }
-    }
-    cout << "Масив із сум цифр після сортування: ";
-    for (int i = 0; i < size; i++) 
-    {
-        cout << array2[i] << " ";
-    }
-    cout << endl;
+struct PralnaMashynka {
+    char firma[50];
+    char kolir[20];
+    float shyryna;
+    float dovzhyna;
+    float vysota;
+    int potuzhnist;
+    int shvydkist;
+    float temperaturaNagrevu;
+};
+
+void vyvestyMashynku(const PralnaMashynka &m) {
+    cout << "Фірма: " << m.firma << endl;
+    cout << "Колір: " << m.kolir << endl;
+    cout << "Ширина: " << m.shyryna << " см" << endl;
+    cout << "Довжина: " << m.dovzhyna << " см" << endl;
+    cout << "Висота: " << m.vysota << " см" << endl;
+    cout << "Потужність: " << m.potuzhnist << " Вт" << endl;
+    cout << "Швидкість: " << m.shvydkist << " об/хв" << endl;
+    cout << "Температура нагріву: " << m.temperaturaNagrevu << " °C" << endl;
 }
 
+int main() {
+    PralnaMashynka mashynka;
+
+    
+    strcpy(mashynka.firma, "Samsung");
+    strcpy(mashynka.kolir, "Білий");
+    mashynka.shyryna = 60.0;
+    mashynka.dovzhyna = 55.0;
+    mashynka.vysota = 85.0;
+    mashynka.potuzhnist = 2000;
+    mashynka.shvydkist = 1200;
+    mashynka.temperaturaNagrevu = 90.0;
+
+    
+    vyvestyMashynku(mashynka);
+
+    return 0;
+}
